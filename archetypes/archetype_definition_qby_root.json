@@ -35,6 +35,8 @@
             "Deny-Databricks-NoPublicIp",
             "Deny-Databricks-Sku",
             "Deny-Databricks-VirtualNetwork",
+            "Deny-EH-Premium-CMK",
+            "Deny-LogicApp-Public-Network",
             "Deny-MachineLearning-Aks",
             "Deny-MachineLearning-Compute-SubnetId",
             "Deny-MachineLearning-Compute-VmSize",
