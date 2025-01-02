@@ -11,7 +11,29 @@
             "version": "1.0.0",
             "category": "NetworkSecurity"
         },
-        "parameters": {},
+        "parameters": {
+            "effectForDNS": {
+                "type": "String",
+                "defaultValue": "Audit",
+                "allowedValues": [
+                    "Deny",
+                    "Audit",
+                    "Disabled"
+                ],
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "The effect determines what happens when the policy rule is evaluated to match"
+                }
+            },
+            "DnsIp": {
+                "type": "String",
+                "defaultValue": "",
+                "metadata": {
+                    "displayName": "DNS Server IP (should be the deployed firewall)",
+                    "description": "The DNS Server to forward all DNS requests from all VNets to - should be the IP of the deployed firewall"
+                }
+            }
+        },
         "policyDefinitions": [
             {
                 "policyDefinitionReferenceId": "Deny Network Security Groups without default deny rule",
@@ -24,6 +46,18 @@
             {
                 "policyDefinitionReferenceId": "Deny vNets with wrong name",
                 "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/QBY-Allow-Vnet-Name"
+            },
+            {
+                "policyDefinitionReferenceId": "Allow only subnets with one DNS server matching the Firewall's IP address",
+                "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/QBY-Audit-Vnet-DNS",
+                "parameters": {
+                    "effect": {
+                        "value": "[parameters('effectForDNS')]"
+                    },
+                    "servers": {
+                        "value": ["[parameters('DnsIp')]"]
+                    }
+                }
             }
         ],
         "policyDefinitionGroups": null

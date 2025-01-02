@@ -145,7 +145,8 @@
             "QBY-Deploy-Vnet-Links",
             "QBY-Allow-Subnet-NSG",
             "QBY-Deny-NSG-Without-Deny-vNetInboundTraffic-Rule",
-            "QBY-Allow-Vnet-Name"
+            "QBY-Allow-Vnet-Name",
+            "QBY-Audit-Vnet-DNS"
         ],
         "policy_set_definitions": [
             "Audit-UnusedResourcesCostOptimization",

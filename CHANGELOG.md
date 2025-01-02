@@ -5,6 +5,22 @@ All notable changes to this module will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this module adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- note: an upcoming release should consider turning 5.2.0 into a major version
+by changing the DNS policy mode to `Deny`. This ensures that no VNet can be deployed
+without the Firewall as its primary DNS server
+
+## [5.2.0]
+
+### Added
+- added network security policy that enforces a particular DNS server
+(should be the firewall's ip address) on all vnets
+- note: this feature currently runs in `Audit` mode and will result in
+a breaking change once turned into a `Deny` policy
+
 ## [5.1.0]
 
 ### Added

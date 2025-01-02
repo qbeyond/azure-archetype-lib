@@ -10,7 +10,14 @@
     "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policySetDefinitions/QBY-Network-Security",
     "scope": "${current_scope_resource_id}",
     "notScopes": ${jsonencode(notScopesForQbyNetworkSecurity)},
-    "parameters": {},
+    "parameters": {
+      "effectForDNS": {
+        "value": "Audit"
+      },
+      "DnsIp": {
+        "value": ""
+      }
+    },
     "nonComplianceMessages": [
       {
         "message": "NSG must contain a deny vNet Inbound Traffic Rule and a correct name",
@@ -23,6 +30,10 @@
       {
         "message": "vNet must be prefixed with 'vnet-', followed by the address space delimited by '-' and suffixed with the region. EG: vnet-10-0-0-0-16-eastus2",
         "policyDefinitionReferenceId": "Deny vNets with wrong name"
+      },
+      {
+        "message": "vNet must use the firewall IP as the primary DNS server",
+        "policyDefinitionReferenceId": "Allow only subnets with one DNS server matching the Firewall's IP address"
       }
     ]
   },
