@@ -5,6 +5,13 @@ All notable changes to this module will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this module adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.1.0]
+
+### Added
+
+- added policy assignment that denies specific resource types unless they are deployed into a scope excluded via `notScopes`
+- resource type policy assignment denies bastion deployments by default
+
 ## [6.0.1]
 ### Fixed
 - removed broken policy set that was using old parameters

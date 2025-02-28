@@ -6,7 +6,8 @@
             "QBY-Deploy-VM-Backup",
             "QBY-Deploy-VM-Monitoring",
             "QBY-Deploy-Vnet-Links",
-            "QBY-Network-Security"
+            "QBY-Network-Security",
+            "QBY-Deny-Resource-Types"
         ],
         "policy_definitions": [],
         "policy_set_definitions": [],

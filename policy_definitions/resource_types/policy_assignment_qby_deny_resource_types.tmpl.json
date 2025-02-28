@@ -1,0 +1,25 @@
+{
+    "name": "QBY-Deny-Resource-Types",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "apiVersion": "2019-09-01",
+    "properties": {
+        "description": "Deny the creation of resources with specific types, unless they are deployed to an excluded scope.",
+        "displayName": "Deny the creation of specific resource types.",
+        "notScopes": [],
+        "policyDefinitionId": "${root_scope_resource_id}/providers/Microsoft.Authorization/policyDefinitions/QBY-Deny-Resource-Types",
+        "nonComplianceMessages": [],
+        "scope": "${current_scope_resource_id}",
+        "enforcementMode": null,
+        "parameters": {
+            "listOfResourceTypesNotAllowed": {
+                "value": [
+                    "Microsoft.Network/bastionHosts"
+                ]
+            }
+        }
+    },
+    "location": "${default_location}",
+    "identity": {
+        "type": "SystemAssigned"
+    }
+}

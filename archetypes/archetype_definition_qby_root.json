@@ -192,7 +192,8 @@
             "QBY-Allow-Vnet-Name",
             "QBY-Deny-Vnet-DNS",
             "QBY-Allowed-Locations-For-Resource-Groups",
-            "QBY-Allowed-Locations-For-Resources"
+            "QBY-Allowed-Locations-For-Resources",
+            "QBY-Deny-Resource-Types"
         ],
         "policy_set_definitions": [
             "Audit-UnusedResourcesCostOptimization",

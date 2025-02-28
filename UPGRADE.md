@@ -4,6 +4,31 @@ This document includes guidelines what to do to upgrade to a new major version. 
 
 ## [Unreleased]
 
+## [6.1.0]
+
+### Resource types
+
+A new policy assignment `QBY-Deny-Resource-Types` denies resource types specified via `listOfResourceTypesNotAllowed`.
+The parameter `notScopes` can be used to specify scopes (subscriptions and resource groups only) where the policy
+does not take effect. Make sure to provide scopes with their full resource id and resource types with their provider.
+
+```terraform
+    "msp" = {
+      // ...
+      archetype_id = "qby_msp"
+      parameters = {
+        QBY-Deny-Resource-Types = {
+          listOfResourceTypesNotAllowed = [
+            "Microsoft.Network/bastionHost"
+          ]
+          notScopes = [
+            "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-resourcegroup-dev-01"
+          ]
+        }
+      }
+    }
+``` 
+
 ## [6.0.0]
 
 ### VM SKUs, Locations

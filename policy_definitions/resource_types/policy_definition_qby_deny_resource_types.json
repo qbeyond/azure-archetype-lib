@@ -1,0 +1,74 @@
+{
+    "name": "QBY-Deny-Resource-Types",
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "properties": {
+        "displayName": "Deny the creation of specific resource types.",
+        "policyType": "Custom",
+        "mode": "Indexed",
+        "description": "Deny the creation of resources with specific types, unless they are deployed to an excluded scope.",
+        "metadata": {
+            "version": "1.0.0",
+            "category": "ResourceTypes"
+        },
+        "parameters": {
+            "listOfResourceTypesNotAllowed": {
+                "type": "Array",
+                "metadata": {
+                    "description": "The list of resource types that cannot be deployed.",
+                    "displayName": "Not allowed resource types",
+                    "strongType": "resourceTypes"
+                }
+            },
+            "notScopes": {
+                "type": "Array",
+                "metadata": {
+                    "description": "The list of scopes where this policy does not apply and resources can still be deployed to. Must be subscriptions or resource groups in their resource id format",
+                    "displayName": "Excluded scopes"
+                },
+                "defaultValue": []
+            },
+            "effect": {
+                "type": "String",
+                "defaultValue": "Deny",
+
+                "allowedValues": [
+                    "Audit",
+                    "Deny",
+                    "Disabled"
+                ],
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "The effect determines what happens when the policy rule is evaluated to match."
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "in": "[parameters('listOfResourceTypesNotAllowed')]"
+                    },
+                    {
+                        "value": "[field('type')]",
+                        "exists": true
+                    },
+                    {
+                        "count": {
+                            "value": "[parameters('notScopes')]",
+                            "name": "scope",
+                            "where": {
+                                "field": "id",
+                                "like": "[concat(current('scope'), '*')]"
+                            }
+                        },
+                        "equals": 0
+                    }
+                ]
+            },
+            "then": {
+                "effect": "[parameters('effect')]"
+            }
+        }
+    }
+}
